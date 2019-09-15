@@ -5,8 +5,8 @@ local COMBAT_TAG_TIMER = 10
 
 function combat_tag.get_tag(player)
    local meta = player:get_meta()
-   local tag_end = meta:get_string("combat_tag_end")
-   if not tag_end then
+   local tag_end = meta:get_int("combat_tag_end")
+   if tag_end == 0 then
       return nil
    end
 
@@ -28,7 +28,7 @@ function combat_tag.tag(player, length)
    end
    local meta = player:get_meta()
    meta:mark_as_private("combat_tag_end")
-   meta:set_string(
+   meta:set_int(
       "combat_tag_end",
       os.time(os.date("!*t")) + length
    )
