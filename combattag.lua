@@ -4,7 +4,8 @@
 local COMBAT_TAG_TIMER = 10
 
 function combat_tag.get_tag(player)
-   local tag_end = player:get_meta("combat_tag_end")
+   local meta = player:get_meta()
+   local tag_end = meta:get_string("combat_tag_end")
    if not tag_end then
       return nil
    end
@@ -25,7 +26,9 @@ function combat_tag.tag(player, length)
          "You've been combat tagged for " .. tostring(hitter_tag) .. "s."
       )
    end
-   player:set_meta(
+   local meta = player:get_meta()
+   meta:mark_as_private("combat_tag_end")
+   meta:set_string(
       "combat_tag_end",
       os.time(os.date("!*t")) + length
    )
