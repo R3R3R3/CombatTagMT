@@ -23,7 +23,7 @@ function combat_tag.tag(player, length)
    if not player_tag_end then
       minetest.chat_send_player(
          player:get_player_name(),
-         "You've been combat tagged for " .. tostring(player_tag_end) .. "s."
+         "You've been combat tagged for " .. tostring(length) .. "s."
       )
    end
    local meta = player:get_meta()
