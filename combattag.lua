@@ -22,8 +22,8 @@ function combat_tag.tag(player, length)
    local player_tag_end = combat_tag.get_tag(player)
    if not player_tag_end then
       minetest.chat_send_player(
-         minetest.get_player_by_name(player),
-         "You've been combat tagged for " .. tostring(hitter_tag) .. "s."
+         player:get_player_name(),
+         "You've been combat tagged for " .. tostring(player_tag_end) .. "s."
       )
    end
    local meta = player:get_meta()
@@ -48,6 +48,7 @@ minetest.register_on_leaveplayer(function(player)
       local pname = player:get_player_name()
 
       if combat_tag.get_tag(player) then
+         -- TODO: temporary, need a better combat log effect...
          minetest.chat_send_all(pname .. " combat logged!")
          player:set_hp(0) -- RIP
       end
