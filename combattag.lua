@@ -27,7 +27,7 @@ function combat_tag.tag(player, length)
       )
    end
    local meta = player:get_meta()
-   meta:mark_as_private("combat_tag_end")
+   -- meta:mark_as_private("combat_tag_end")
    meta:set_int(
       "combat_tag_end",
       os.time(os.date("!*t")) + length
